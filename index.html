@@ -49,6 +49,9 @@ a:hover{color:var(--fl)}
 a:visited{color:var(--ft)}
 .dual-btn{padding:var(--lg) var(--xl);background:linear-gradient(135deg,var(--fp),var(--fl));color:var(--lp);border:none;border-radius:var(--md);font-weight:700;font-size:clamp(1rem,2vw,1.5rem);cursor:pointer;transition:all .3s ease;box-shadow:0 8px 24px rgba(99,102,241,.5);text-transform:uppercase;letter-spacing:2px;margin-top:var(--lg);text-decoration:none;display:inline-block}
 .dual-btn:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 12px 32px rgba(99,102,241,.7)}
+body.enhanced section{background:rgba(10,10,18,.95)!important;backdrop-filter:blur(20px)!important}
+body.enhanced .pf,body.enhanced .who,body.enhanced .step,body.enhanced .st{background:rgba(20,20,30,.95)!important;border:2px solid var(--fp)!important;box-shadow:0 0 30px rgba(99,102,241,.3)!important}
+body.enhanced h2,body.enhanced h3,body.enhanced p{text-shadow:0 0 10px rgba(255,255,255,.1)!important}
 @media (max-width:768px){section{padding:var(--xl) 0}.stats,.how{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{#cc{display:none}body{background:#fff;color:#000}}
@@ -64,6 +67,7 @@ a:visited{color:var(--ft)}
 <button class="pbtn" data-pattern="transformation-wave">Transformation Wave</button>
 <button class="pbtn" data-pattern="energy-flow">Energy Flow</button>
 <button class="pbtn" data-pattern="emergence-burst">Emergence Burst</button>
+<button class="pbtn" id="enhance-btn" onclick="toggleEnhance()">Enhance</button>
 </div>
 </div>
 <section class="hook">
@@ -131,7 +135,8 @@ else if(p==='orbital-system'){for(let i=0;i<10;i++)ns.push({a:(TWO_PI/10)*i,d:ra
 else if(p==='transformation-wave'){for(let i=0;i<100;i++)ps.push({x:random(width),y:random(height),tx:tx+random(-50,50),ty:ty+random(-50,50),sp:.02});}
 else if(p==='energy-flow'){for(let i=0;i<5;i++)paths.push({sx:random(width),sy:random(height),ex:random(width),ey:random(height)});for(let i=0;i<20;i++)ps.push({pi:floor(random(paths.length)),pr:random(1),sp:random(.01,.02)});}}
 document.querySelectorAll('.pbtn').forEach(b=>b.addEventListener('click',e=>{
-document.querySelectorAll('.pbtn').forEach(btn=>btn.classList.remove('active'));
+if(e.target.id==='enhance-btn')return;
+document.querySelectorAll('.pbtn').forEach(btn=>{if(btn.id!=='enhance-btn')btn.classList.remove('active')});
 e.target.classList.add('active');p=e.target.dataset.pattern;init();
 }));
 function setup(){createCanvas(windowWidth,windowHeight).parent('cc');cs=true;init();}
@@ -142,6 +147,7 @@ else if(p==='transformation-wave'){for(let pt of ps){pt.x+=(pt.tx-pt.x)*pt.sp;pt
 else if(p==='energy-flow'){for(let pt of ps){let pa=paths[pt.pi];pt.pr+=pt.sp;if(pt.pr>1)pt.pr=0;let x=lerp(pa.sx,pa.ex,pt.pr),y=lerp(pa.sy,pa.ey,pt.pr);fill(255,105,180,200);noStroke();ellipse(x,y,8,8);}}
 else if(p==='emergence-burst'){ex.power+=.5;if(frameCount%2===0){for(let i=0;i<10;i++){let a=random(TWO_PI),s=random(5,15);ps.push({x:ex.x,y:ex.y,vx:cos(a)*s,vy:sin(a)*s,l:100,h:random(0,60),s:random(3,8)});}}for(let i=ps.length-1;i>=0;i--){let pt=ps[i];pt.x+=pt.vx;pt.y+=pt.vy;pt.vx*=.98;pt.vy*=.98;pt.l--;push();colorMode(HSB);fill(pt.h,100,100,pt.l/100);noStroke();ellipse(pt.x,pt.y,pt.s);pop();if(pt.l<=0)ps.splice(i,1);}if(ex.power>500)ex.power=0;}}
 function windowResized(){resizeCanvas(windowWidth,windowHeight);cx=width/2;cy=height/2;tx=cx;ty=cy;ex.x=cx;ex.y=cy;}
+function toggleEnhance(){document.body.classList.toggle('enhanced');const btn=document.getElementById('enhance-btn');btn.classList.toggle('active');}
 </script>
 </body>
 </html>
