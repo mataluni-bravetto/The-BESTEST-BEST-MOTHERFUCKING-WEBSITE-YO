@@ -47,11 +47,8 @@ section{padding:var(--x3) 0;position:relative}
 a{color:var(--fp);text-decoration:none;transition:color .3s ease}
 a:hover{color:var(--fl)}
 a:visited{color:var(--ft)}
-.dual-btn{padding:var(--lg) var(--xl);background:linear-gradient(135deg,var(--fp),var(--fl));color:var(--lp);border:none;border-radius:var(--md);font-weight:700;font-size:clamp(1rem,2vw,1.5rem);cursor:pointer;transition:all .3s ease;box-shadow:0 8px 24px rgba(99,102,241,.5);text-transform:uppercase;letter-spacing:2px;margin-top:var(--lg)}
+.dual-btn{padding:var(--lg) var(--xl);background:linear-gradient(135deg,var(--fp),var(--fl));color:var(--lp);border:none;border-radius:var(--md);font-weight:700;font-size:clamp(1rem,2vw,1.5rem);cursor:pointer;transition:all .3s ease;box-shadow:0 8px 24px rgba(99,102,241,.5);text-transform:uppercase;letter-spacing:2px;margin-top:var(--lg);text-decoration:none;display:inline-block}
 .dual-btn:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 12px 32px rgba(99,102,241,.7)}
-body.enhanced section{background:rgba(10,10,18,.95)!important;backdrop-filter:blur(20px)!important}
-body.enhanced .pf,body.enhanced .who,body.enhanced .step,body.enhanced .st{background:rgba(20,20,30,.95)!important;border:2px solid var(--fp)!important;box-shadow:0 0 30px rgba(99,102,241,.3)!important}
-body.enhanced h2,body.enhanced h3,body.enhanced p{text-shadow:0 0 10px rgba(255,255,255,.1)!important}
 @media (max-width:768px){section{padding:var(--xl) 0}.stats,.how{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media print{#cc{display:none}body{background:#fff;color:#000}}
@@ -74,7 +71,7 @@ body.enhanced h2,body.enhanced h3,body.enhanced p{text-shadow:0 0 10px rgba(255,
 <h1 class="svh">AbëONE</h1>
 <p class="svs">The BEST motherfucking website</p>
 <p class="cvb">Living Canvas × 5 Patterns × Interactive × MIND BLOWN</p>
-<button class="dual-btn" onclick="enhanceAndOpen()">Enhance & View Source</button>
+<a href="https://github.com/mataluni-bravetto/The-BESTEST-BEST-MOTHERFUCKING-WEBSITE-YO" target="_blank" class="dual-btn">View Source</a>
 </div>
 </section>
 <section class="pf">
@@ -145,7 +142,6 @@ else if(p==='transformation-wave'){for(let pt of ps){pt.x+=(pt.tx-pt.x)*pt.sp;pt
 else if(p==='energy-flow'){for(let pt of ps){let pa=paths[pt.pi];pt.pr+=pt.sp;if(pt.pr>1)pt.pr=0;let x=lerp(pa.sx,pa.ex,pt.pr),y=lerp(pa.sy,pa.ey,pt.pr);fill(255,105,180,200);noStroke();ellipse(x,y,8,8);}}
 else if(p==='emergence-burst'){ex.power+=.5;if(frameCount%2===0){for(let i=0;i<10;i++){let a=random(TWO_PI),s=random(5,15);ps.push({x:ex.x,y:ex.y,vx:cos(a)*s,vy:sin(a)*s,l:100,h:random(0,60),s:random(3,8)});}}for(let i=ps.length-1;i>=0;i--){let pt=ps[i];pt.x+=pt.vx;pt.y+=pt.vy;pt.vx*=.98;pt.vy*=.98;pt.l--;push();colorMode(HSB);fill(pt.h,100,100,pt.l/100);noStroke();ellipse(pt.x,pt.y,pt.s);pop();if(pt.l<=0)ps.splice(i,1);}if(ex.power>500)ex.power=0;}}
 function windowResized(){resizeCanvas(windowWidth,windowHeight);cx=width/2;cy=height/2;tx=cx;ty=cy;ex.x=cx;ex.y=cy;}
-function enhanceAndOpen(){document.body.classList.add('enhanced');window.open('https://github.com/mataluni-bravetto/The-BESTEST-BEST-MOTHERFUCKING-WEBSITE-YO','_blank');}
 </script>
 </body>
 </html>
